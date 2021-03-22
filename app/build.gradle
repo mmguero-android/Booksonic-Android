@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 
+def keystorePropertiesFile = rootProject.file("./private/keystore.properties")
+def keystoreProperties = new Properties()
+
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 repositories {
 	maven {
 		url "https://maven.google.com"
@@ -56,6 +61,12 @@ android {
 		debug {
 			storeFile file('debug.keystore')
 		}
+	 release {
+			storeFile file(keystoreProperties['storeFile'])
+			storePassword keystoreProperties['storePassword']
+			keyAlias keystoreProperties['keyAlias']
+			keyPassword keystoreProperties['keyPassword']
+   }
 	}
 	buildToolsVersion '29.0.3'
 }

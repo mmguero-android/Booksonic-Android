@@ -47,6 +47,28 @@ Some notable features are:
  - Sleep timer with shake to reset functionality
  - and much more
 
+ Building from Source with Docker
+ -----------------
+
+ You can generate an unofficial, unsigned Booksonic APK from source using [Docker Android Build Box](https://github.com/mingchen/docker-android-build-box):
+
+ ```
+ $ docker pull mingc/android-build-box:latest
+ ...
+
+ $ cd ./Booksonic-Android
+
+ $ docker run --rm -v $(pwd):/project mingc/android-build-box bash -c 'cd /project; bash ./gradlew assembleRelease'
+ ...
+
+ $ ls -lh ./app/build/outputs/apk/*/*/*.apk
+ -rw-r--r-- 1 root root 7.1M Jun 18 14:34 './app/build/outputs/apk/floss/debug/Booksonic 2003.2-floss-debug.apk'
+ -rw-r--r-- 1 root root 3.7M Jun 18 14:33 './app/build/outputs/apk/floss/fix/Booksonic 2003.2-floss-fix-unsigned.apk'
+ -rw-r--r-- 1 root root 3.7M Jun 18 14:49 './app/build/outputs/apk/floss/release/Booksonic 2003.2-floss-release-unsigned.apk'
+ -rw-r--r-- 1 root root 7.1M Jun 18 14:34 './app/build/outputs/apk/google/debug/Booksonic 2003.2-google-debug.apk'
+ -rw-r--r-- 1 root root 3.8M Jun 18 14:34 './app/build/outputs/apk/google/fix/Booksonic 2003.2-google-fix-unsigned.apk'
+ -rw-r--r-- 1 root root 3.8M Jun 18 14:50 './app/build/outputs/apk/google/release/Booksonic 2003.2-google-release-unsigned.apk'
+ ```
  
 License
 -------
